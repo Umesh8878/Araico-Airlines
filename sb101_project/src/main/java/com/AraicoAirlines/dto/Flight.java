@@ -2,18 +2,33 @@ package com.AraicoAirlines.dto;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Flight {
+    @Id
+    @Column(name = "flight_number")
     private String flightNumber;
+    
+    @Column(name = "departure_city")
     private String departureCity;
+    
+    @Column(name = "destination_city")
     private String destinationCity;
+    
+    @Column(name = "departure_time")
     private LocalDateTime departureTime;
+    
+    @Column(name = "arrival_time")
     private LocalDateTime arrivalTime;
+    
     private double price;
-    
-    
+
     public Flight() {
-		super();
-	}
+        super();
+    }
 
 	public Flight(String flightNumber, String departureCity, String destinationCity,
                   LocalDateTime departureTime, LocalDateTime arrivalTime, double price) {
