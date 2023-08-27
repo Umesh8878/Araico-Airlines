@@ -1,0 +1,5 @@
+package com.AraicoAirlines.utility;
+
+public class DBUtils {
+
+}

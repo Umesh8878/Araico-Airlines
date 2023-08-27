@@ -1,0 +1,167 @@
+package com.AraicoAirlines.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.AraicoAirlines.dto.Flight;
+import com.AraicoAirlines.utility.DBUtils;
+import com.AraicoAirlines.exceptions.*;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+import java.util.*;
+public class FlightDAOImpl implements FlightDAO {
+	
+	private final Connection connection;
+
+    public FlightDAOImpl(Connection connection) {
+        this.connection = connection;
+    }
+	
+	@Override
+	public void addFlight(Flight flight) throws SomethingWentWrongException {
+	    EntityManager entityManager = DBUtils.getEntityManager();
+	    EntityTransaction transaction = entityManager.getTransaction();
+
+	    try {
+	        transaction.begin();
+	        entityManager.persist(flight);
+	        transaction.commit();
+	    } catch (Exception e) {
+	        if (transaction != null && transaction.isActive()) {
+	            transaction.rollback();
+	        }
+	        e.printStackTrace();  
+	        throw new SomethingWentWrongException("Error adding flight");
+	    } finally {
+	        entityManager.close();
+	    }
+	}
+
+
+    @Override
+    public void updateFlight(Flight flight) {
+        EntityManager entityManager = DBUtils.getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            entityManager.merge(flight);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public void removeFlight(String flightNumber) {
+        EntityManager entityManager = DBUtils.getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            Flight flight = entityManager.find(Flight.class, flightNumber);
+            if (flight != null) {
+                entityManager.remove(flight);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public Flight getFlightByNumber(String flightNumber) {
+        EntityManager entityManager = DBUtils.getEntityManager();
+        try {
+            String queryString = "SELECT f FROM Flight f WHERE f.flightNumber = :flightNumber";
+            TypedQuery<Flight> query = entityManager.createQuery(queryString, Flight.class);
+            query.setParameter("flightNumber", flightNumber);
+
+            return query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
+    
+    @Override
+    public List<Flight> getAllFlights() {
+        EntityManager entityManager = DBUtils.getEntityManager();
+        try {
+            String queryString = "SELECT f FROM Flight f";
+            TypedQuery<Flight> query = entityManager.createQuery(queryString, Flight.class);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+
+    @Override
+    public List<Flight> getAvailableFlights(String departureCity, String destinationCity, LocalDate journeyDate,
+                                            int numTravelers) {
+        List<Flight> availableFlights = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM flights " +
+                           "WHERE departure_city = ? " +
+                           "AND destination_city = ? " +
+                           "AND departure_time >= ? " +
+                           "AND available_seats >= ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, departureCity);
+            preparedStatement.setString(2, destinationCity);
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(journeyDate.atStartOfDay()));
+            preparedStatement.setInt(4, numTravelers);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String flightNumber = resultSet.getString("flight_number");
+                String departureCityDB = resultSet.getString("departure_city");
+                String destinationCityDB = resultSet.getString("destination_city");
+                LocalDateTime departureTimeDB = resultSet.getTimestamp("departure_time").toLocalDateTime();
+                LocalDateTime arrivalTimeDB = resultSet.getTimestamp("arrival_time").toLocalDateTime();
+                double priceDB = resultSet.getDouble("price");
+
+                Flight flight = new Flight(flightNumber, departureCityDB, destinationCityDB,
+                        departureTimeDB, arrivalTimeDB, priceDB);
+        		availableFlights.add(flight);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return availableFlights;
+    }
+
+
+}

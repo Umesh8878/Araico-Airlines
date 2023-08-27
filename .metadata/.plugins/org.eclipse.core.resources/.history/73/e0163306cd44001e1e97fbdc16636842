@@ -1,0 +1,5 @@
+package com.AraicoAirlines.dto;
+
+public class Traveler {
+
+}

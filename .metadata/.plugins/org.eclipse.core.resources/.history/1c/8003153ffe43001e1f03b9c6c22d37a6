@@ -1,0 +1,116 @@
+package com.AraicoAirlines.dto;
+
+import jakarta.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "customers")
+public class Customer {
+
+    @Id
+    @Column(name = "customer_id", length = 5)
+    private String id;
+
+    @Column(name = "name", length = 25, nullable = false)
+    private String name;
+
+    @Column(name = "dob", nullable = false)
+    private LocalDate dob;
+
+    @Column(name = "gender", length = 10, nullable = false)
+    private String gender;
+
+    @Column(name = "email", unique = true, length = 25, nullable = false)
+    private String email;
+
+    @Column(name = "mobile_number", length = 10, nullable = false)
+    private String mobileNumber;
+
+    
+    public Customer() {
+		super();
+	}
+
+	public Customer(String name, LocalDate dob, String gender, String email, String mobileNumber) {
+        this.name = name;
+        this.dob = dob;
+        this.gender = gender;
+        this.email = email;
+        this.mobileNumber = mobileNumber;
+        this.id = generateCustomerId(name);
+    }
+
+	
+    public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public LocalDate getDob() {
+		return dob;
+	}
+
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", dob=" + dob + ", gender=" + gender + ", email=" + email
+				+ ", mobileNumber=" + mobileNumber + "]";
+	}
+
+	// Generate customer id based on the name
+    private String generateCustomerId(String name) {
+        String[] nameParts = name.split(" ");
+        String firstName = nameParts[0];
+        String lastName = nameParts[nameParts.length - 1];
+
+        // Ensure the first character of the id is uppercase
+        char firstChar = Character.toUpperCase(firstName.charAt(0));
+        
+        // Generate a random 3-digit number
+        int randomNumber = (int) (Math.random() * 900) + 100;
+        
+        // Ensure the last character of the id is uppercase
+        char lastChar = Character.toUpperCase(lastName.charAt(0));
+
+        return String.format("%c%d%c", firstChar, randomNumber, lastChar);
+    }
+}

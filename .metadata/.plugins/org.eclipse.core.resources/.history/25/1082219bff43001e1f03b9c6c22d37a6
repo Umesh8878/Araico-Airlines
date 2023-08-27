@@ -1,0 +1,10 @@
+package com.AraicoAirlines.dao;
+
+import com.AraicoAirlines.dto.Customer;
+import com.AraicoAirlines.exceptions.SomethingWentWrongException;
+
+public interface CustomerDAO {
+	void registerCustomer(Customer customer) throws SomethingWentWrongException;
+    Customer loginCustomer(String email, String password) throws SomethingWentWrongException;
+
+}

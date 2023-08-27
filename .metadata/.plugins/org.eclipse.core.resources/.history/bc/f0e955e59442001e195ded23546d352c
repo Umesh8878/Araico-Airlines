@@ -1,0 +1,10 @@
+package com.AraicoAirlines.dao;
+
+import com.AraicoAirlines.dto.Flight;
+
+public interface FlightDAO {
+    void addFlight(Flight flight);
+    void updateFlight(Flight flight);
+    void removeFlight(String flightNumber);
+	Flight getFlightByNumber(String flightNumber);
+}

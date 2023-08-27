@@ -1,0 +1,20 @@
+package com.AraicoAirlines.dao;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.AraicoAirlines.dto.Flight;
+import com.AraicoAirlines.exceptions.SomethingWentWrongException;
+
+public interface FlightDAO {
+    void addFlight(Flight flight) throws SomethingWentWrongException;
+    void updateFlight(Flight flight);
+    void removeFlight(String flightNumber);
+    List<Flight> getAllFlights();
+	Flight getFlightByNumber(String flightNumber);
+	List<Flight> getAvailableFlights(String departureCity, String destinationCity, LocalDate journeyDate, int numTravelers);
+	List<Flight> filterFlightsByDepartureCity(String departureCity);
+    List<Flight> filterFlightsByDestinationCity(String destinationCity);
+	List<Flight> filterFlightsByDepartureDate(LocalDate departureDate);
+	List<Flight> filterFlightsByDestinationDate(LocalDate destinationDate);
+}

@@ -1,0 +1,8 @@
+package com.AraicoAirlines.dao;
+
+import com.AraicoAirlines.dto.AdminDTO;
+
+public abstract class AdminDAO {
+	abstract void registerAdmin(AdminDTO admin);
+    abstract AdminDTO getAdminByUsername(String username);
+}
