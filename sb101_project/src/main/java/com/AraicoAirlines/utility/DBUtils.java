@@ -1,5 +1,9 @@
 package com.AraicoAirlines.utility;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -14,4 +18,13 @@ public class DBUtils {
 	public static EntityManager getEntityManager() {
 		return emf.createEntityManager();
 	}
+	
+	public static Connection getConnection() throws SQLException {
+        // Modify the following with your database connection details
+        String url = "jdbc:mysql://localhost:3306/your_database_name";
+        String username = "your_username";
+        String password = "your_password";
+
+        return DriverManager.getConnection(url, username, password);
+    }
 }

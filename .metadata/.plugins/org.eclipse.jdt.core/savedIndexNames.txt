@@ -1,4 +1,3 @@
 INDEX VERSION 1.132+C:\Users\DELL\Desktop\habitual-oatmeal-3228\.metadata\.plugins\org.eclipse.jdt.core
-2576805157.index
 2023246906.index
 1865797976.index
