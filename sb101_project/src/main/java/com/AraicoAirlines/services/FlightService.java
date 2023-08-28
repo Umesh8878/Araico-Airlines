@@ -114,8 +114,8 @@ public class FlightService {
     public boolean doesFlightExist(String flightNumberChoice) throws SomethingWentWrongException {
         try {
             Connection connection = DBUtils.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM flights WHERE flight_number = ?");
-            preparedStatement.setString(1, flightNumberChoice); // Use setString instead of setInt
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM flight WHERE flight_number = ?");
+            preparedStatement.setString(1, flightNumberChoice);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);

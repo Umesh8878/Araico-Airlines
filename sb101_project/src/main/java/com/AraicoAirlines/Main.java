@@ -6,6 +6,7 @@ import com.AraicoAirlines.exceptions.SomethingWentWrongException;
 import com.AraicoAirlines.services.AdminService;
 import com.AraicoAirlines.services.CustomerService;
 import com.AraicoAirlines.services.FlightService;
+import com.AraicoAirlines.services.TravelerService;
 import com.AraicoAirlines.utility.DBUtils;
 import com.AraicoAirlines.dto.Flight;
 import com.AraicoAirlines.dao.*;
@@ -503,7 +504,7 @@ public class Main {
                 System.out.println("2. Filter by Departure City");
                 System.out.println("3. Filter by Destination City");
                 System.out.println("4. Filter by Price Range");
-                System.out.println("5. Filter by All");
+                System.out.println("5. Filter using multiple conditions");
                 System.out.println("6. Go Back");
                 System.out.print("Enter your choice: ");
                 int filterChoice = scanner.nextInt();
@@ -719,6 +720,11 @@ public class Main {
                 travelers.add(traveler);
             }
 
+            // Add travelers to the database using the TravelerService
+            for (Traveler traveler : travelers) {
+                TravelerService.saveTraveler(traveler);
+            }
+
             System.out.println("Booking Details:");
             System.out.println("Flight: " + selectedFlight);
             System.out.println("Class: " + ((classChoice == 2) ? "Business" : "Economy"));
@@ -733,7 +739,12 @@ public class Main {
 
             if (payChoice.equalsIgnoreCase("YES")) {
                 System.out.println("Payment Options:");
-                // Payment options menu
+                System.out.println("1. Debit Card");
+                System.out.println("2. Credit Card");
+                System.out.println("3. UPI");
+                System.out.println("4. Paytm");
+                System.out.println("5. PhonePe");
+                System.out.println("6. Google Pay");
                 System.out.print("Select a payment option: ");
                 int paymentOption = scanner.nextInt();
                 scanner.nextLine();
@@ -799,6 +810,7 @@ public class Main {
 
         String otp = generateOTP();
         System.out.println("OTP has been sent to your registered mobile number.");
+        System.out.println("Your OTP is "+ otp);
         System.out.print("Enter the OTP: ");
         String enteredOTP = scanner.nextLine();
 
@@ -811,11 +823,29 @@ public class Main {
 
         String otp = generateOTP();
         System.out.println("OTP has been sent to your registered mobile number.");
+        System.out.println("Your OTP is " + otp);
         System.out.print("Enter the OTP: ");
         String enteredOTP = scanner.nextLine();
 
         return otp.equals(enteredOTP);
     }
+
+//    private static boolean isValidUpiFormat(String upiId, String upiSuffix) {
+//        // Split the UPI ID by "@" to get the prefix and suffix
+//        String[] parts = upiId.split("@");
+//        
+//        // Check if the UPI ID has exactly two parts and the suffix matches
+//        if (parts.length == 2 && parts[1].equals(upiSuffix)) {
+//            String prefix = parts[0];
+//            
+//            // Check if the prefix is not empty
+//            if (prefix.length() > 0) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//
 
     private static String generateOTP() {
         // Generate a random 6-digit OTP

@@ -1,8 +1,0 @@
-package com.AraicoAirlines.dao;
-
-import com.AraicoAirlines.dto.TravellerDetails;
-import com.AraicoAirlines.exceptions.SomethingWentWrongException;
-
-public interface TravellerDetailsDAO {
-    void addTravellerDetails(String flightNumber, TravellerDetails traveller) throws SomethingWentWrongException;
-}

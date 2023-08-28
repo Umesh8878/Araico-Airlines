@@ -5,4 +5,5 @@ import com.AraicoAirlines.exceptions.SomethingWentWrongException;
 
 public interface TravelerDAO {
     void saveTraveler(Traveler traveler) throws SomethingWentWrongException;
+    
 }

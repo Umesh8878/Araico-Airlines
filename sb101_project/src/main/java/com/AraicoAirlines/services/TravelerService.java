@@ -5,9 +5,9 @@ import com.AraicoAirlines.exceptions.SomethingWentWrongException;
 import com.AraicoAirlines.dao.*;
 
 public class TravelerService {
-    private TravelerDAOImpl travelerDAO = new TravelerDAOImpl();
+    private static TravelerDAOImpl travelerDAO = new TravelerDAOImpl();
 
-    public void saveTraveler(Traveler traveler) throws SomethingWentWrongException {
+    public static void saveTraveler(Traveler traveler) throws SomethingWentWrongException {
         travelerDAO.saveTraveler(traveler);
     }
 }
