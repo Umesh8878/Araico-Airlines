@@ -2,7 +2,6 @@ INDEX VERSION 1.132+C:\Users\DELL\Desktop\habitual-oatmeal-3228\.metadata\.plugi
 3194326370.index
 1251920925.index
 934380583.index
-2576805157.index
 76177574.index
 2023246906.index
 2214968899.index

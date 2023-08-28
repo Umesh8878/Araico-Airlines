@@ -17,7 +17,7 @@ This Flight Booking System is designed to streamline the flight booking process 
 - **Database Integration:** Utilizes MySQL for data storage and Hibernate for seamless Java-Database integration.
 - **Er-Diagram:**
 ![ER-Diagram]
-<img src="./img/Your paragraph text (1).png"  width="100%"/>
+<img src="./img/Your paragraph text (1).png"  width="100%" height="800px/>
 
 ## How to Use
 
