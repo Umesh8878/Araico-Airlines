@@ -1,6 +1,7 @@
 # Araico Airlines Flight Booking System
 
-![Araico Airlines Logo](img/Araico%20Airlines.png)
+![Araico Airlines Logo]
+<img src="./img/Araico Airlines.png"  width="60%" height="350px"/>
 
 Welcome to the Araico Airlines Flight Booking System repository! This project aims to provide a simplified solution for booking flights for travelers through a console-based interface.
 
@@ -15,7 +16,8 @@ This Flight Booking System is designed to streamline the flight booking process 
 - **Modular Development:** The project follows a modular approach for better maintainability and scalability.
 - **Database Integration:** Utilizes MySQL for data storage and Hibernate for seamless Java-Database integration.
 - **Er-Diagram:**
-![ER-Diagram](img/Your%20paragraph%20text%20(1).png)
+![ER-Diagram]
+<img src="./img/Your paragraph text (1).png"  width="60%" height="350px"/>
 
 ## How to Use
 
