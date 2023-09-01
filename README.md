@@ -1,4 +1,4 @@
-# Araico Airlines Flight Booking System
+# Araico Airlines : Flight Booking System
 
 ![Araico Airlines Logo](./img/Araico%20Airlines.png)
 
