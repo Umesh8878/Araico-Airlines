@@ -1,6 +1,6 @@
 # Araico Airlines : Flight Booking System
 
-![Araico Airlines Logo](./img/Araico%20Airlines.png)
+![Araico Airlines Logo]([./img/Araico%20Airlines.png](https://github.com/Umesh8878/Araico-Airlines/blob/main/img/Araico%20Airlines.png))
 
 Welcome to the Araico Airlines Flight Booking System repository! This project aims to provide a simplified solution for booking flights for travelers through a console-based interface.
 
