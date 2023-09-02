@@ -799,23 +799,64 @@ public class Main {
     }
 
     private static boolean cardPayment(Scanner scanner) {
-        System.out.print("Enter 16-digit card number: ");
-        String cardNumber = scanner.nextLine();
+        for (int attempt = 1; attempt <= 2; attempt++) {
+            System.out.print("Enter 16-digit card number: ");
+            String cardNumber = scanner.nextLine();
 
-        System.out.print("Enter expiry date (yy/mm): ");
-        String expiryDate = scanner.nextLine();
+            if (!isValidCardNumber(cardNumber)) {
+                System.out.println("Invalid card number. Please enter a 16-digit card number.");
 
-        System.out.print("Enter CVV: ");
-        String cvv = scanner.nextLine();
+                if (attempt == 2) {
+                    System.out.println("Payment canceled due to invalid card number.");
+                    return false;
+                }
+            } else {
+                System.out.print("Enter expiry date (yy/mm): ");
+                String expiryDate = scanner.nextLine();
 
-        String otp = generateOTP();
-        System.out.println("OTP has been sent to your registered mobile number.");
-        System.out.println("Your OTP is "+ otp);
-        System.out.print("Enter the OTP: ");
-        String enteredOTP = scanner.nextLine();
+                if (!isValidExpiryDate(expiryDate)) {
+                    System.out.println("Invalid expiry date format or the card has expired.");
 
-        return otp.equals(enteredOTP);
+                    if (attempt == 2) {
+                        System.out.println("Payment canceled due to invalid expiry date.");
+                        return false;
+                    }
+                } else {
+                    System.out.print("Enter CVV: ");
+                    String cvv = scanner.nextLine();
+
+                    String otp = generateOTP();
+                    System.out.println("OTP has been sent to your registered mobile number.");
+                    System.out.println("Your OTP is " + otp);
+                    System.out.print("Enter the OTP: ");
+                    String enteredOTP = scanner.nextLine();
+
+                    return otp.equals(enteredOTP);
+                }
+            }
+        }
+
+        return false;
     }
+    
+    private static boolean isValidCardNumber(String cardNumber) {
+        return cardNumber.matches("\\d{16}");
+    }
+
+    private static boolean isValidExpiryDate(String expiryDate) {
+        if (!expiryDate.matches("\\d{2}/\\d{2}")) {
+            return false;
+        }
+
+        int year = Integer.parseInt(expiryDate.substring(0, 2));
+        int month = Integer.parseInt(expiryDate.substring(3, 5));
+
+        int currentYear = java.time.Year.now().getValue() % 100;
+        int currentMonth = java.time.Month.from(java.time.LocalDate.now()).getValue();
+
+        return year >= currentYear && month >= currentMonth;
+    }
+
 
     private static boolean upiPayment(String upiSuffix, Scanner scanner) {
         System.out.print("Enter UPI ID" + upiSuffix + ": ");
