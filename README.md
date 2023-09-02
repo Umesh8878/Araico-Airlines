@@ -1,8 +1,10 @@
-# Araico Airlines : Flight Booking System
+# Araico Airlines: Flight Booking System
 
-![Araico Airlines Logo](./Araico_pic/Araico%20Airlines.png)
+![Araico Airlines Logo]![Araico Airlines](https://github.com/Umesh8878/habitual-oatmeal-3228/assets/115473268/9ef55bc2-e25b-41e4-865b-3d9c0b5f561a)
 
-Welcome to the Araico Airlines Flight Booking System repository! This project aims to provide a simplified solution for booking flights for travelers through a console-based interface.
+
+
+Welcome to the Araico Airlines Flight Booking System repository! This project aims to provide a simplified solution for booking flights for travellers through a console-based interface.
 
 ## About
 
@@ -15,7 +17,8 @@ This Flight Booking System is designed to streamline the flight booking process 
 - **Modular Development:** The project follows a modular approach for better maintainability and scalability.
 - **Database Integration:** Utilizes MySQL for data storage and Hibernate for seamless Java-Database integration.
 - **Er-Diagram:**
-![ER-Diagram](./Araico_pic/ER-Diagram%20(2).png)
+![ER-Diagram]![ER-Diagram (2)](https://github.com/Umesh8878/habitual-oatmeal-3228/assets/115473268/704d6e43-4d53-4ad1-b506-0f8feda7ce93)
+
 
 ## How to Use
 
@@ -25,16 +28,20 @@ This Flight Booking System is designed to streamline the flight booking process 
 
 ## Screenshots
 
-![Admin Portal](./Araico_pic/admin%20interface.png)
+![Admin Portal]![admin_interface](https://github.com/Umesh8878/habitual-oatmeal-3228/assets/115473268/b4a4e13c-8319-4ac8-866b-4a6b135a8162)
+
 _Admin Portal allows administrators to manage flight information._
 
-![Customer Portal](./Araico_pic/customer_interface.png)
+![Customer Portal]![customer_interface](https://github.com/Umesh8878/habitual-oatmeal-3228/assets/115473268/b9c4e49b-aba4-49fa-965b-173513e36c5c)
+
 _Customer Portal enables customers to search for flights and make bookings._
 
-![Booking Portal](./Araico_pic/booking_interface.png)
+![Booking Portal]![booking_interface](https://github.com/Umesh8878/habitual-oatmeal-3228/assets/115473268/abb9e44c-714a-48a6-a7bf-f2c6cf87c8ff)
+
 _Booking Portal enables customers to book flights and make bookings._
 
-![Payment Interface](./Araico_pic/payment_interface.png)
+![Payment Interface]![payment_interface](https://github.com/Umesh8878/habitual-oatmeal-3228/assets/115473268/4e3f04e7-5169-4d5b-81c5-bdbcf54173c4)
+
 _Payment interface enables customers to make payment for their booking using various payment methods._
 
 ## Additional Features (Optional)
