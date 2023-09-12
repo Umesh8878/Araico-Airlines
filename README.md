@@ -22,7 +22,7 @@ This Flight Booking System is designed to streamline the flight booking process 
 
 ## How to Use
 
-1. Clone this repository using `git clone https://github.com/Umesh8878/habitual-oatmeal-3228`
+1. Clone this repository using `git clone https://github.com/Umesh8878/Araico-Airlines`
 2. Set up your MySQL database and update the database credentials in the configuration file.
 3. Run the application and follow the on-screen instructions for admin and customer interactions.
 
